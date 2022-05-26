@@ -31,7 +31,7 @@ class Composite extends Component{
     protected children : Component[] = []; // Aqui estaba el error me daba undifiend por que no se habia inicializado el array en null o vacio
 
    
-    public add(c: Component):void{
+    public add(c: Component): void{
         this.children.push(c);
         c.setParent(this); // duda con esta linea de codigo
     }
@@ -46,12 +46,13 @@ class Composite extends Component{
         return true;
     }
 
-    public operation():string{
-        const result = [];
+    public operation(): string{
+        const results = [];
         for (const child of this.children){
-            result.push(child.operation);
+            results.push(child.operation()); // aqui esta el error 
         }
-        return`Branch(${result.join()})`;
+        
+        return `Branch(${results.join('+')})`;
     }
 }
 

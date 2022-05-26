@@ -57,12 +57,12 @@ var Composite = /** @class */ (function (_super) {
         return true;
     };
     Composite.prototype.operation = function () {
-        var result = [];
+        var results = [];
         for (var _i = 0, _a = this.children; _i < _a.length; _i++) {
             var child = _a[_i];
-            result.push(child.operation);
+            results.push(child.operation()); // aqui esta el error 
         }
-        return "Branch(" + result.join() + ")";
+        return "Branch(" + results.join('+') + ")";
     };
     return Composite;
 }(Component));
