@@ -9,8 +9,9 @@ abstract class Component {
         return this.parent;
     }
 
-    public add(c:Component): void{}
-    public remove(c: Component):void{}
+    public add(component:Component): void{}
+
+    public remove(component: Component):void{}
 
     public isComposite(): boolean{
         return false;
@@ -27,11 +28,12 @@ class Leaf extends Component{
 
 class Composite extends Component{
 
-    protected children : Component[];
+    protected children : Component[] = []; // Aqui estaba el error me daba undifiend por que no se habia inicializado el array en null o vacio
 
+   
     public add(c: Component):void{
-        this.children.push(c); // error ---------
-        c.setParent(c); // duda con esta linea de codigo
+        this.children.push(c);
+        c.setParent(this); // duda con esta linea de codigo
     }
     
     public remove(c:Component):void{
@@ -49,7 +51,7 @@ class Composite extends Component{
         for (const child of this.children){
             result.push(child.operation);
         }
-        return`Branch(${result.join('+')})`;
+        return`Branch(${result.join()})`;
     }
 }
 
@@ -61,18 +63,18 @@ function clientCode(component: Component){
 // Codigo fuente de ejemplo
 const simple = new Leaf();
 console.log('Client: I\'ve got a simple component');
-//clientCode(simple);
+clientCode(new Leaf);
 
 // Al igual que un composite (un objeto compuesto)
 const tree = new Composite();
 const branch1 = new Composite();
-branch1.add(new Leaf());
-branch1.add(new Leaf());
-const branch2 = new Composite();
+branch1.add(new Leaf);
+branch1.add(new Leaf);
+
+const branch2 = new Leaf();
 branch2.add(new Leaf());
 tree.add(branch1);
 tree.add(branch2);
-console.log('Now I\'ve got a composite tree')
+console.log('Now I\'ve got a Composite Tree');
+
 clientCode(tree);
-
-
