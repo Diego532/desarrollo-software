@@ -39,12 +39,12 @@ class ConcreteSubject implements Subject{
         console.log('Subject notificando observadores...');
         for (const observador of this.observers){
             observador.update(this); // Error en la definicion d elos parametros en la interface observer y subject
-        }
+        } // update pudiera tener un tipo parametrizado para que le pase cualquier objeto concreto?
     }
 
     public someBussinessLogic() : void{
         console.log('Estoy haciendo algo importante');
-        this.state = Math.floor(Math.random()*(10 + 1));
+        this.state = Math.floor(Math.random()*(10 + 1)); // investigar metodo floor de clase Math
 
         console.log(`My state  has just changed to ${this.state}`);
         this.notify();
@@ -54,15 +54,33 @@ class ConcreteSubject implements Subject{
 
 class ConcreteObserverA implements Observer{
     public update(subject: Subject): void {
-        if (subject instanceof ConcreteSubject && subject.state < 3) {
+        if (subject instanceof ConcreteSubject && subject.state < 3) { // investigar instanceof
             console.log('ConcreteObserverA: Reacted to the event.');
         }
     }
 
 }
 
+class ConcreteObserverB implements Observer{
+    public update(subject: Subject): void {
+        if (subject instanceof ConcreteSubject && (subject.state === 0 || subject.state >= 2)){
+            console.log('ConcreteObserverB: React to Event');
+        }
+    }
+}
 
 
+//cliente code 
+const subject = new ConcreteSubject();
+
+const observador1 = new ConcreteObserverA();
+subject.addObservador(observador1);
+
+const observador2 = new ConcreteObserverB();
+subject.addObservador(observador2);
+
+
+subject.someBussinessLogic();
 
 
 

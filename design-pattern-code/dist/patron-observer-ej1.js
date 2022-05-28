@@ -24,11 +24,11 @@ var ConcreteSubject = /** @class */ (function () {
         for (var _i = 0, _a = this.observers; _i < _a.length; _i++) {
             var observador = _a[_i];
             observador.update(this); // Error en la definicion d elos parametros en la interface observer y subject
-        }
+        } // update pudiera tener un tipo parametrizado para que le pase cualquier objeto concreto?
     };
     ConcreteSubject.prototype.someBussinessLogic = function () {
         console.log('Estoy haciendo algo importante');
-        this.state = Math.floor(Math.random() * (10 + 1));
+        this.state = Math.floor(Math.random() * (10 + 1)); // investigar metodo floor de clase Math
         console.log("My state  has just changed to " + this.state);
         this.notify();
     };
@@ -38,9 +38,26 @@ var ConcreteObserverA = /** @class */ (function () {
     function ConcreteObserverA() {
     }
     ConcreteObserverA.prototype.update = function (subject) {
-        if (subject instanceof ConcreteSubject && subject.state < 3) {
+        if (subject instanceof ConcreteSubject && subject.state < 3) { // investigar instanceof
             console.log('ConcreteObserverA: Reacted to the event.');
         }
     };
     return ConcreteObserverA;
 }());
+var ConcreteObserverB = /** @class */ (function () {
+    function ConcreteObserverB() {
+    }
+    ConcreteObserverB.prototype.update = function (subject) {
+        if (subject instanceof ConcreteSubject && (subject.state === 0 || subject.state >= 2)) {
+            console.log('ConcreteObserverB: React to Event');
+        }
+    };
+    return ConcreteObserverB;
+}());
+//cliente code 
+var subject = new ConcreteSubject();
+var observador1 = new ConcreteObserverA();
+subject.addObservador(observador1);
+var observador2 = new ConcreteObserverB();
+subject.addObservador(observador2);
+subject.someBussinessLogic();
