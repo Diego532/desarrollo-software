@@ -63,7 +63,7 @@ var iterador = coleccion.crearIterador();
 console.log('Todo esta funcionando...');
 // duda de porque este while esta aqui y no en el iterador
 while (iterador.validarPosicionActual()) {
-    console.log(iterador.siguienteElemento);
+    console.log(iterador.siguienteElemento());
 }
 console.log('');
 // nota: tengo un bucle infinito que debo corregir

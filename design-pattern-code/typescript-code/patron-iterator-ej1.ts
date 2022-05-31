@@ -35,7 +35,7 @@ class IteradorOrdenAlfabetico implements Iterador<string>{
         }
     }
 
-    public refrescarIterador():void{
+    public refrescarIterador(){
         this.posicion = this.reverse ? this.coleccion.getCount() - 1 : 0;
     }
 
@@ -104,9 +104,9 @@ const iterador = coleccion.crearIterador();
 console.log('Todo esta funcionando...');
 
 // duda de porque este while esta aqui y no en el iterador
-while (iterador.validarPosicionActual()){
-    console.log(iterador.siguienteElemento);
-}
+ while (iterador.validarPosicionActual()){
+     console.log(iterador.siguienteElemento());
+ }
 
 console.log('');
 
