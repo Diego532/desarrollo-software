@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import './Mocks/mock_locationclass.dart';
 import 'location_detail.dart';
+import './modules/location.dart';
 
 void main() {
-  return runApp(MaterialApp(home: LocationDetail()));
+  final Location mocklocation = MockLocation.fetchany();
+  return runApp(MaterialApp(home: LocationDetail(mocklocation)));
 }
 
 //MaterialApp() es un constructor para crear una instacia de material App
