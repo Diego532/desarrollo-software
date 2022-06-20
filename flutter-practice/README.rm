@@ -1,0 +1,5 @@
+Errores Encontrados:
+
+1) Descripcion: Al crear un nuevo proyecto de flutter en un mismo emulador o PC se queda colgado en "Running Gradle task 'assembleDebug'..."
+
+Solucion: https://stackoverflow.com/questions/59516408/flutter-app-stuck-at-running-gradle-task-assembledebug
